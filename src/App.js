@@ -34,7 +34,7 @@ function App() {
               <Menu.Item key="3">About</Menu.Item>
             </Link>
             <Menu.Item key="4">
-              <ConnectButton></ConnectButton>
+              <ConnectButton />
             </Menu.Item>
           </Menu>
         </Header>
@@ -48,7 +48,11 @@ function App() {
           </div>
         </Content>
         <Footer>
-          {APP_NAME} &copy;2022 - Built for the Theta hackathon 2022
+          {APP_NAME} &copy;2022 - Built for the{" "}
+          <a href="https://theta-2022-hackathon.devpost.com/" target="_blank">
+            Theta Q1 hackathon 2022
+          </a>
+          .
         </Footer>
       </Layout>
     </div>

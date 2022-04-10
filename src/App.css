@@ -15,9 +15,31 @@
   background: white;
 }
 
+.about-container {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.about-image {
+  width: 500px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
 .header-image {
   height: 50px;
 }
+
+.sell-area {
+  min-height: 50vh;
+}
+
+.sell-heading {
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
 .result-box {
   padding: 10px 20px;
   border: 1px solid black;

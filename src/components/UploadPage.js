@@ -3,6 +3,8 @@ import React, { useState, useEffect } from "react";
 import { StreamDropzone } from "./StreamDropzone";
 import { Input, Button, Steps, Layout } from "antd";
 import { storeFiles } from "../util/stor";
+import { CONNECT_TEXT, UPLOAD_INFO } from "../util/constants";
+import { deployContract } from "../contract/thetaContract";
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -21,7 +23,7 @@ function SellStream({ isLoggedIn, signer, provider, address, blockExplorer }) {
   const [files, setFiles] = useState([]);
   const [info, setInfo] = useState({
     userName: "cbono",
-    title: "LiveStream Broadcast from 5/29",
+    title: "LiveStream clip from 4/9",
     eth: 0.01,
   });
   const [result, setResult] = useState({});
@@ -48,11 +50,15 @@ function SellStream({ isLoggedIn, signer, provider, address, blockExplorer }) {
 
         // TODO: after upload of files, create the contract.
 
+        const contract = await deployContract(info.title, address);
+
         const card = {
           ...info,
+          ...contract,
           createdAt: new Date(),
-          key: res.bucketKey,
         };
+
+        setResult(contract);
 
         // Add the newly created stream to index (optional).
         // addCard(card);
@@ -77,7 +83,7 @@ function SellStream({ isLoggedIn, signer, provider, address, blockExplorer }) {
             <h2 className="sell-header">Login</h2>
             <p>
               In order to create a listing, you must login with your metamask or
-              wallet account. Click 'connect' in the top right to begin.
+              wallet account. Click '{CONNECT_TEXT}' in the top right to begin.
             </p>
           </div>
         );
@@ -85,18 +91,21 @@ function SellStream({ isLoggedIn, signer, provider, address, blockExplorer }) {
         return (
           <div className="info-section">
             <h2 className="sell-header">What are you listing?</h2>
+
             <Input
               addonBefore={"Stream(s)"}
               placeholder="Enter name of listing"
               value={info.title}
               onChange={(e) => updateInfo({ title: e.target.value })}
             />
+
             <Input
               addonBefore={"DisplayName"}
               placeholder="Enter listing user name"
               value={info.userName}
               onChange={(e) => updateInfo({ userName: e.target.value })}
             />
+
             <Input
               addonBefore={"Price (eth)"}
               placeholder="Enter eth price"
@@ -116,11 +125,7 @@ function SellStream({ isLoggedIn, signer, provider, address, blockExplorer }) {
               placeholder="Payment Address: "
               value={address}
             />
-            <p>
-              Note: In order to sell a stream or stream package, it must be
-              finished and as a recording. This recording will be secured and
-              delivered via a special IPFS link.
-            </p>
+            <p>{UPLOAD_INFO}</p>
           </div>
         );
       case 2: // upload
@@ -152,7 +157,7 @@ function SellStream({ isLoggedIn, signer, provider, address, blockExplorer }) {
 
             {result.url && (
               <a href={result.url} target="_blank">
-                Click here to view listing.
+                Click here to view contract
               </a>
             )}
           </div>
@@ -162,7 +167,7 @@ function SellStream({ isLoggedIn, signer, provider, address, blockExplorer }) {
 
   return (
     <div className="content">
-      <h1>List new stream in marketplace</h1>
+      <h1 className="sell-heading">List new stream in marketplace</h1>
       <Header>
         <Steps current={currentStep}>
           <Step title="Login" description="Authenticate." />
@@ -184,6 +189,7 @@ function SellStream({ isLoggedIn, signer, provider, address, blockExplorer }) {
             Previous
           </Button>
         )}
+        &nbsp;
         {currentStep < LAST_STEP && (
           <Button
             disabled={loading}

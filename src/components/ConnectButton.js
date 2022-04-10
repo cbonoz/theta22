@@ -5,7 +5,9 @@ import { Button } from "antd";
 export default function ConnectButton() {
   const { activateBrowserWallet, account } = useEthers();
   const etherBalance = useEtherBalance(account);
+
   function handleConnectWallet() {
+    console.log("connect wallet");
     activateBrowserWallet();
   }
 
