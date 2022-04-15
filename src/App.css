@@ -2,6 +2,13 @@
   /* text-align: center; */
 }
 
+.dropzone {
+  border: 2px dotted black;
+  padding: 20px;
+  height: 100px;
+  cursor: pointer;
+}
+
 .ant-layout-header {
   background-color: white;
   background: white;
@@ -11,7 +18,7 @@
   max-width: 1000px;
   margin: 0 auto;
   padding: 50px;
-  min-height: 90vh;
+  min-height: 85vh;
   background: white;
 }
 
@@ -31,7 +38,7 @@
 }
 
 .sell-area {
-  min-height: 50vh;
+  min-height: 40vh;
 }
 
 .sell-heading {

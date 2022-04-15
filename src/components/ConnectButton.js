@@ -1,5 +1,6 @@
 // ConnectButton.tsx
 import { useEthers, useEtherBalance } from "@usedapp/core";
+import { ethers } from "ethers";
 import { Button } from "antd";
 
 export default function ConnectButton() {
@@ -11,13 +12,19 @@ export default function ConnectButton() {
     activateBrowserWallet();
   }
 
-  return account ? (
-    <span color="white" fontSize="md">
-      {etherBalance && etherBalance} ETH
+  if (account && etherBalance) {
+    const amount = ethers.utils.formatEther(etherBalance.toString());
+    return (
+      <span color="white" fontSize="md">
+        <b>{amount} TFUEL</b> {account.slice(0, 6)}**
+      </span>
+    );
+  }
+  return (
+    <span className="right">
+      <Button type="primary" onClick={handleConnectWallet}>
+        Connect to a wallet
+      </Button>
     </span>
-  ) : (
-    <Button type="primary" onClick={handleConnectWallet}>
-      Connect to a wallet
-    </Button>
   );
 }

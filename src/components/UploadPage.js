@@ -5,6 +5,7 @@ import { Input, Button, Steps, Layout } from "antd";
 import { storeFiles } from "../util/stor";
 import { CONNECT_TEXT, UPLOAD_INFO } from "../util/constants";
 import { deployContract } from "../contract/thetaContract";
+import { ipfsUrl } from "../util";
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -26,6 +27,7 @@ function SellStream({ isLoggedIn, signer, provider, address, blockExplorer }) {
     title: "LiveStream clip from 4/9",
     eth: 0.01,
   });
+
   const [result, setResult] = useState({});
   const [loading, setLoading] = useState(false);
 
@@ -45,20 +47,28 @@ function SellStream({ isLoggedIn, signer, provider, address, blockExplorer }) {
       setLoading(true);
 
       try {
-        const res = await storeFiles(files);
+        let res = "";
+        res = await storeFiles(files);
         setResult(res);
+        const videoUrl = ipfsUrl(res);
 
         // TODO: after upload of files, create the contract.
 
-        const contract = await deployContract(info.title, address);
+        const contract = await deployContract(
+          info.title,
+          videoUrl,
+          info.userName
+        );
+
+        console.log("deployed contract", contract);
 
         const card = {
           ...info,
-          ...contract,
+          // ...contract,
           createdAt: new Date(),
         };
 
-        setResult(contract);
+        setResult(card);
 
         // Add the newly created stream to index (optional).
         // addCard(card);
@@ -167,7 +177,7 @@ function SellStream({ isLoggedIn, signer, provider, address, blockExplorer }) {
 
   return (
     <div className="content">
-      <h1 className="sell-heading">List new stream in marketplace</h1>
+      <h1 className="sell-heading">Publish a new video clip NFT</h1>
       <Header>
         <Steps current={currentStep}>
           <Step title="Login" description="Authenticate." />

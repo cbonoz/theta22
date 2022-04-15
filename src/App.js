@@ -1,11 +1,11 @@
 import { Layout, Menu } from "antd";
-import { APP_NAME } from "./util/constants";
+import { ACTIVE_NETWORK, APP_NAME } from "./util/constants";
 
 import { Routes, Route, Link, Router } from "react-router-dom";
 import UploadPage from "./components/UploadPage";
 
 import logo from "./assets/logo.png";
-import "antd/dist/antd.css";
+import "antd/dist/antd.min.css";
 import "./App.css";
 import About from "./components/About";
 import Discover from "./components/Discover";
@@ -33,9 +33,7 @@ function App() {
             <Link to="/about">
               <Menu.Item key="3">About</Menu.Item>
             </Link>
-            <Menu.Item key="4">
-              <ConnectButton />
-            </Menu.Item>
+            <ConnectButton />
           </Menu>
         </Header>
         <Content>
@@ -52,7 +50,7 @@ function App() {
           <a href="https://theta-2022-hackathon.devpost.com/" target="_blank">
             Theta Q1 hackathon 2022
           </a>
-          .
+          . Active Network: {ACTIVE_NETWORK.name}
         </Footer>
       </Layout>
     </div>

@@ -4,7 +4,6 @@
 
 ## ClippedNFT
 
-
 ClippedNFT allows content creators to monetize 'clips' of their video or gaming content using Theta Smart contracts and NFTs.
 
 ## Inspiration
@@ -15,12 +14,11 @@ These collections can also be later resold and traded by new owners.
 
 Many NFT platforms exist, but:
 
-* There's not a dominant one that appeals to the streaming (gaming and non-gaming) streaming market.
-* May not integrate with existing streaming networks. ClippedNFT doesn't care how you broadcast, only that the uploaded listings have a particular format and content.
-* Have higher overhead - contentstream backed by LivePeer and allows you to re-use existing assets and content if you wish.
-Many streamers are already into technology and can port their existing streams onto the platform.
-* ClippedNFT is a niche platform not focused on current categories like artwork/real estate - only video content.
-
+- There's not a dominant one that appeals to the streaming (gaming and non-gaming) streaming market.
+- May not integrate with existing streaming networks. ClippedNFT doesn't care how you broadcast, only that the uploaded listings have a particular format and content.
+- Have higher overhead - contentstream backed by LivePeer and allows you to re-use existing assets and content if you wish.
+  Many streamers are already into technology and can port their existing streams onto the platform.
+- ClippedNFT is a niche platform not focused on current categories like artwork/real estate - only video content.
 
 <b>This project is a hackathon prototype and would require additional work / deployment to be production ready.</b>
 
@@ -45,7 +43,7 @@ Network Name: Theta Testnet
 New RPC URL: https://eth-rpc-api-testnet.thetatoken.org/rpc
 Chain ID: 365
 Currency Symbol: TFUEL
-Block Explorer URL: https://explorer.thetatoken.org/
+Block Explorer URL: https://testnet-explorer.thetatoken.org/
 
 Network Name: Theta Mainnet
 New RPC URL: https://eth-rpc-api.thetatoken.org/rpc
@@ -53,11 +51,12 @@ Chain ID: 361
 Currency Symbol: TFUEL
 Block Explorer URL: https://explorer.thetatoken.org/
 
+Update `ACTIVE_NETWORK` in `constants.js` to reflect the target network for the smart contract deployments. One contract is created for each listing with a direct link to the video clip stored on IPFS.
+
 ## How we built it
 
 - Website based on ReactJS.
 - Integration with web3 using metamask and theta networks.
-
 
 ## Challenges we ran into
 
@@ -68,6 +67,7 @@ Block Explorer URL: https://explorer.thetatoken.org/
 - Works and contract deploys with an upload stream or video file!
 
 ## Potential future work
+
 - Monetization strategy (ClippedNFT could take a fee from NFT sales).
 - Production deployment.
 
@@ -92,6 +92,11 @@ New RPC URL: https://eth-rpc-api.thetatoken.org/rpc
 Chain ID: 361
 Currency Symbol (optional): TFUEL
 Block Explorer URL (optional): https://explorer.thetatoken.org/
+
+### Recompiling contracts
+
+From the `/contracts` directory:
+`yarn; truffle compile`
 
 ### Useful links
 
