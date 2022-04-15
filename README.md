@@ -2,23 +2,23 @@
     <img src="./img/logo_3_2.png" width=600 />
 </p>
 
-## ClippedNFT
+## ThetaBundle
 
-ClippedNFT allows content creators to monetize 'clips' of their video or gaming content using Theta Smart contracts and NFTs.
+ThetaBundle allows content creators to sell bundles/rights to their video or gaming content via transactable smart contracts.
 
 ## Inspiration
 
-Existing streamers often have large followings and post their content to youtube or other sites after streaming on live networks like Twitch - but that could be the end of it. Given these followings, we want to provide an opportunity to further connect with fans by providing memorabilia, and providing an additional revenue opportunity for the content creator. ClippedNFT allows any streamer to turn 'clips' of their streamed content into a sellable NFT and IPFS video upload.
+Existing streamers often have large followings and post their content to youtube or other sites after streaming on live networks like Twitch - but that could be the end of it. Given these followings, we want to provide an opportunity to further connect with fans by providing memorabilia, and providing an additional revenue opportunity for the content creator. ThetaBundle allows any streamer to turn collections of their streamed content into a purchase-able contract and IPFS video group.
 
 These collections can also be later resold and traded by new owners.
 
-Many NFT platforms exist, but:
+Many video marketplace platforms exist, but:
 
 - There's not a dominant one that appeals to the streaming (gaming and non-gaming) streaming market.
-- May not integrate with existing streaming networks. ClippedNFT doesn't care how you broadcast, only that the uploaded listings have a particular format and content.
+- May not integrate with existing streaming networks. ThetaBundle doesn't care how you broadcast, only that the uploaded listings have a particular format and content.
 - Have higher overhead - contentstream backed by LivePeer and allows you to re-use existing assets and content if you wish.
   Many streamers are already into technology and can port their existing streams onto the platform.
-- ClippedNFT is a niche platform not focused on current categories like artwork/real estate - only video content.
+- ThetaBundle is a niche platform not focused on current categories like artwork/real estate - only video content.
 
 <b>This project is a hackathon prototype and would require additional work / deployment to be production ready.</b>
 
@@ -26,7 +26,7 @@ Many NFT platforms exist, but:
 
 ### Project structure
 
-`/contracts`: Smart contracts for the ClippedNFT application.
+`/contracts`: Smart contracts for the ThetaBundle application.
 `/img`: Example screenshots.
 
 The root directory is the client. Deploy to the Theta testnet (default config).
@@ -68,7 +68,7 @@ Update `ACTIVE_NETWORK` in `constants.js` to reflect the target network for the 
 
 ## Potential future work
 
-- Monetization strategy (ClippedNFT could take a fee from NFT sales).
+- Monetization strategy (ThetaBundle could take a fee from contract sales).
 - Production deployment.
 
 <!--

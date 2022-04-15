@@ -32,3 +32,5 @@ export const ipfsUrl = (cid) => `https://ipfs.io/ipfs/${cid}`;
 export const transactionUrl = (tx) => `${ACTIVE_NETWORK.url}/tx/${tx}`;
 export const accountUrl = (account) =>
   `${ACTIVE_NETWORK.url}/account/${account}`;
+
+  

@@ -21,7 +21,7 @@ function Discover(props) {
 
   return (
     <div>
-      <h1>Discover NFTs</h1>
+      <h1>Discover bundles</h1>
       <br />
       <h3>Enter the address of a {APP_NAME} contract</h3>
 

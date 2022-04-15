@@ -1,10 +1,10 @@
-export const APP_NAME = "ClippedNFT";
+export const APP_NAME = "ThetaBundle";
 export const APP_DESC =
-  "Create resellable NFTs for your signature stream or gaming moments";
+  "Create sellable video collections for your gaming or video streams.";
 
 export const UPLOAD_INFO = `
-Note: In order to sell a video clip or clip package, it must be
-finished and as a recording. This recording will be secured and
+Note: In order to sell a video or video bundle, it must be
+finished and as a recording. The recording(s) will be secured and
 delivered via a special IPFS link saved on a Theta smart contract.
 `;
 

@@ -49,7 +49,7 @@ function SellStream({ isLoggedIn, signer, provider, address, blockExplorer }) {
       try {
         let res = "";
         res = await storeFiles(files);
-        setResult(res);
+        // setResult(res);
         const videoUrl = ipfsUrl(res);
 
         // TODO: after upload of files, create the contract.
@@ -177,13 +177,13 @@ function SellStream({ isLoggedIn, signer, provider, address, blockExplorer }) {
 
   return (
     <div className="content">
-      <h1 className="sell-heading">Publish a new video clip NFT</h1>
+      <h1 className="sell-heading">Publish a new bundle contract</h1>
       <Header>
         <Steps current={currentStep}>
           <Step title="Login" description="Authenticate." />
           <Step title="Information" description="What are you listing?" />
-          <Step title="Upload" description="Add streams for sale." />
-          <Step title="Done" description="View your listing." />
+          <Step title="Upload" description="Add video(s) for purchase." />
+          <Step title="Done" description="View your contract." />
         </Steps>
       </Header>
       <Content>
