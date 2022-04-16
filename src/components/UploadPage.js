@@ -174,7 +174,7 @@ function SellStream({ isLoggedIn, signer, provider, blockExplorer }) {
               View transaction<br/>
               <a target="_blank" href={transactionUrl(result.transactionHash)}>{result.transactionHash}</a></p>}
 
-              <p>Save the contract address below!</p>
+              <p>Share the contract address below!</p>
             {Object.keys(result).map((k) => {
               return (
                 <li>
