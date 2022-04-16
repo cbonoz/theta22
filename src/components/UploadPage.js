@@ -171,9 +171,10 @@ function SellStream({ isLoggedIn, signer, provider, blockExplorer }) {
           <div className="complete-section">
             <h2 className="sell-header green">Complete!</h2>
             {result.transactionHash && <p>
-              Share this url!<br/>
+              View transaction<br/>
               <a target="_blank" href={transactionUrl(result.transactionHash)}>{result.transactionHash}</a></p>}
 
+              <p>Save the contract address below!</p>
             {Object.keys(result).map((k) => {
               return (
                 <li>

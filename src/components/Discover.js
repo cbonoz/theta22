@@ -34,7 +34,7 @@ function Discover(props) {
       setResult(res);
     } catch(e) {
       console.error('error getting contract', e)
-      setError('Not a valid Theta Bundle contract address.')
+      setError('Not a valid ThetaBundle contract address.')
       return
     } finally {
       setLoading(false)
