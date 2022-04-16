@@ -72,6 +72,25 @@ Update `ACTIVE_NETWORK` in `constants.js` to reflect the target network for the 
 - Monetization strategy (ThetaBundle could take a fee from contract sales).
 - Production deployment.
 
+### Screenshots
+<h3>Search/Home</h3>
+<img src="./img/search.png" width=800>
+
+<h3>Specify terms of ThetaBundle contract</h3>
+<img src="./img/upload1.png" width=800>
+
+<h3>Adding video files</h3>
+<img src="./img/upload2.png" width=800>
+
+<h3>Deploying a bundle contract</h3>
+<img src="./img/deploy.png" width=800>
+
+<h3>Deployed contract on Theta testnet</h3>
+<img src="./img/contract.png" width=800>
+
+<h3>About</h3>
+<img src="./img/about.png" width=800>
+
 <!--
 Demo:
 
