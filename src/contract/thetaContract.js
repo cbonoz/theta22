@@ -50,16 +50,16 @@ export const validAddress = (addr) => {
   }
 };
 
-export const markContractCompleted = async (contractAddress, signatureUrl) => {
-  if (!contractAddress || !signatureUrl) {
-    return {};
+export const getContractBundleUrl = async (contractAddress) => {
+  if (!contractAddress) {
+    return null
   }
   const signer = await getSigner();
-  const polysignContract = new ethers.Contract(
+  const contract = new ethers.Contract(
     contractAddress,
     THETA_CONTRACT.abi,
     signer
   );
-  const result = await polysignContract.markCompleted(signatureUrl);
+  const result = await contract.getBundleUrl();
   return result;
 };

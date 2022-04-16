@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import PropTypes from "prop-types";
 import { Button, Input } from "antd";
 import { APP_NAME } from "../util/constants";
-import { transactionUrl } from "../util";
+import { accountUrl, transactionUrl } from "../util";
+import { getContractBundleUrl } from "../contract/thetaContract";
 
 // Discover previously minted NFTs.
 // Find information on the owner, play the video,
@@ -10,13 +11,34 @@ function Discover(props) {
   const [url, setUrl] = useState();
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState();
+  const [error, setError] = useState()
 
   const findListing = async () => {
-    if (!url) {
-      alert("Enter an address");
+    setResult(undefined)
+    setError(undefined)
+    const address= url
+    if (!address) {
+      setError("Enter a contract address.");
+      return
     }
 
-    setResult(transactionUrl(url));
+    setLoading(true)
+
+    let bundleUrl
+    try {
+      bundleUrl = await getContractBundleUrl(address)
+      const res = {
+        contract: accountUrl(address),
+        bundleUrl
+      }
+      setResult(res);
+    } catch(e) {
+      console.error('error getting contract', e)
+      setError('Not a valid Theta Bundle contract address.')
+      return
+    } finally {
+      setLoading(false)
+    }
   };
 
   return (
@@ -40,12 +62,21 @@ function Discover(props) {
         Search
       </Button>
 
+      {error && <p className="red">{error}</p>}
+
       {result && (
         <div>
           <hr />
-          <a href={result} target="_blank">
+          <p>
+          <a href={result.address} target="_blank">
             View Contract
           </a>
+          </p>
+          <p>
+            <a href={result.bundleUrl} target="_blank">
+              View Theta Bundle
+            </a>
+          </p>
         </div>
       )}
     </div>

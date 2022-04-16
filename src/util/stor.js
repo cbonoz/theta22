@@ -11,7 +11,12 @@ function makeStorageClient() {
   return new Web3Storage({ token: getAccessToken() });
 }
 
-export async function storeFiles(files) {
+export async function storeFiles(files, metadata) {
+  if (metadata) {
+    const blob = new Blob([JSON.stringify(metadata)], { type: 'application/json' })
+    const metaFile = new File([blob], 'metadata.json')
+    files.push(metaFile)
+  }
   const client = makeStorageClient();
   const cid = await client.put(files);
   console.log("stored files with cid:", cid);

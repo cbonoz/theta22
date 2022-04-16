@@ -54,7 +54,7 @@ function SellStream({ isLoggedIn, signer, provider, blockExplorer }) {
         const amount = ethers.utils.parseUnits(info.eth.toString(), 'ether').toString()
 
         let res = "";
-        res = await storeFiles(files);
+        res = await storeFiles(files, info);
         // setResult(res);
         const videoUrl = ipfsUrl(res);
 
