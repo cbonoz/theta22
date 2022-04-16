@@ -18,7 +18,7 @@
   max-width: 1000px;
   margin: 0 auto;
   padding: 50px;
-  min-height: 85vh;
+  min-height: 50vh;
   background: white;
 }
 
@@ -38,7 +38,12 @@
 }
 
 .sell-area {
+  margin-top: 25px;;
   min-height: 40vh;
+}
+
+.green {
+  color: green;
 }
 
 .sell-heading {

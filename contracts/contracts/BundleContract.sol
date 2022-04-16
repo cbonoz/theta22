@@ -15,6 +15,7 @@ contract BundleContract {
     address owner;
 
     constructor(string memory _name, string memory _bundleUrl, string memory _creatorName, address _payableAddress, uint _price) {
+        
         console.log("Deploying a BundleContract with name:", _name);
         name = _name;
         bundleUrl = _bundleUrl;

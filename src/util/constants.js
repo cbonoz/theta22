@@ -5,7 +5,7 @@ export const APP_DESC =
 export const UPLOAD_INFO = `
 Note: In order to sell a video or video bundle, it must be
 finished and as a recording. The recording(s) will be secured and
-delivered via a special IPFS link saved on a Theta smart contract.
+delivered via a special IPFS link connected to a Theta bundle smart contract.
 `;
 
 export const CONNECT_TEXT = "Connect Wallet";

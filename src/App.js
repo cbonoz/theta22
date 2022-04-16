@@ -27,8 +27,8 @@ function App() {
             <Link to="/">
               <Menu.Item key="1">Home</Menu.Item>
             </Link>
-            <Link to="/upload">
-              <Menu.Item key="2">Upload</Menu.Item>
+            <Link to="/sell">
+              <Menu.Item key="2">Sell Content</Menu.Item>
             </Link>
             <Link to="/about">
               <Menu.Item key="3">About</Menu.Item>
@@ -40,7 +40,7 @@ function App() {
           <div className="container">
             <Routes>
               <Route path="/" element={<Discover />} />
-              <Route path="/upload" element={<UploadPage />} />
+              <Route path="/sell" element={<UploadPage />} />
               <Route path="/about" element={<About />} />
             </Routes>
           </div>

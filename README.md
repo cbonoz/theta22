@@ -56,7 +56,8 @@ Update `ACTIVE_NETWORK` in `constants.js` to reflect the target network for the 
 ## How we built it
 
 - Website based on ReactJS.
-- Integration with web3 using metamask and theta networks.
+- Integration with web3 using metamask and Theta.
+- Smart contract using Solidity deployed to Theta testnet/mainnet.
 
 ## Challenges we ran into
 
@@ -64,7 +65,7 @@ Update `ACTIVE_NETWORK` in `constants.js` to reflect the target network for the 
 
 ## Accomplishments that we're proud of
 
-- Works and contract deploys with an upload stream or video file!
+- Works and contract deploys with upload streams or video files correctly linked!
 
 ## Potential future work
 

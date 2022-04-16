@@ -5,7 +5,9 @@ import { Input, Button, Steps, Layout } from "antd";
 import { storeFiles } from "../util/stor";
 import { CONNECT_TEXT, UPLOAD_INFO } from "../util/constants";
 import { deployContract } from "../contract/thetaContract";
-import { ipfsUrl } from "../util";
+import { ipfsUrl, transactionUrl } from "../util";
+import {ethers} from 'ethers'
+import { useEthers } from "@usedapp/core";
 
 const { Header, Footer, Sider, Content } = Layout;
 
@@ -13,7 +15,8 @@ const { Step } = Steps;
 
 const LAST_STEP = 3;
 
-function SellStream({ isLoggedIn, signer, provider, address, blockExplorer }) {
+function SellStream({ isLoggedIn, signer, provider, blockExplorer }) {
+  const { activateBrowserWallet, account } = useEthers();
   const [currentStep, setCurrentStep] = useState(0);
 
   useEffect(() => {
@@ -24,7 +27,8 @@ function SellStream({ isLoggedIn, signer, provider, address, blockExplorer }) {
   const [files, setFiles] = useState([]);
   const [info, setInfo] = useState({
     userName: "cbono",
-    title: "LiveStream clip from 4/9",
+    title: "LiveStream videos from 4/9",
+    payableAddress: null,
     eth: 0.01,
   });
 
@@ -47,6 +51,8 @@ function SellStream({ isLoggedIn, signer, provider, address, blockExplorer }) {
       setLoading(true);
 
       try {
+        const amount = ethers.utils.parseUnits(info.eth.toString(), 'ether').toString()
+
         let res = "";
         res = await storeFiles(files);
         // setResult(res);
@@ -57,14 +63,17 @@ function SellStream({ isLoggedIn, signer, provider, address, blockExplorer }) {
         const contract = await deployContract(
           info.title,
           videoUrl,
-          info.userName
+          info.userName,
+          info.payableAddress,
+          amount
         );
 
         console.log("deployed contract", contract);
 
         const card = {
           ...info,
-          // ...contract,
+          contract: contract.address,
+          transactionHash: contract.deployTransaction.hash,
           createdAt: new Date(),
         };
 
@@ -85,12 +94,25 @@ function SellStream({ isLoggedIn, signer, provider, address, blockExplorer }) {
     setCurrentStep(newStep);
   };
 
+  useEffect(() => {
+    if (!!account) {
+      if (currentStep === 0) {
+        updateStep(1)
+      }
+      if (!info.payableAddress) {
+        updateInfo({payableAddress: account})
+      }
+    }
+
+  }, [account])
+
   const getBody = () => {
     switch (currentStep) {
       case 0: // confirm login
         return (
           <div>
             <h2 className="sell-header">Login</h2>
+            <br/>
             <p>
               In order to create a listing, you must login with your metamask or
               wallet account. Click '{CONNECT_TEXT}' in the top right to begin.
@@ -118,7 +140,7 @@ function SellStream({ isLoggedIn, signer, provider, address, blockExplorer }) {
 
             <Input
               addonBefore={"Price (eth)"}
-              placeholder="Enter eth price"
+              placeholder="Name your eth price"
               value={info.eth}
               onChange={(e) => updateInfo({ eth: e.target.value })}
             />
@@ -130,12 +152,12 @@ function SellStream({ isLoggedIn, signer, provider, address, blockExplorer }) {
               onChange={(e) => updateInfo({ imgUrl: e.target.value })}
             />
             <Input
-              addonBefore={"Address"}
+              addonBefore={"Payment Address"}
               disabled
               placeholder="Payment Address: "
-              value={address}
+              value={info.payableAddress}
             />
-            <p>{UPLOAD_INFO}</p>
+            <p><br/>{UPLOAD_INFO}</p>
           </div>
         );
       case 2: // upload
@@ -147,7 +169,10 @@ function SellStream({ isLoggedIn, signer, provider, address, blockExplorer }) {
       case 3: // done
         return (
           <div className="complete-section">
-            <h2 className="sell-header">Complete!</h2>
+            <h2 className="sell-header green">Complete!</h2>
+            {result.transactionHash && <p>
+              Share this url!<br/>
+              <a target="_blank" href={transactionUrl(result.transactionHash)}>{result.transactionHash}</a></p>}
 
             {Object.keys(result).map((k) => {
               return (
@@ -156,6 +181,7 @@ function SellStream({ isLoggedIn, signer, provider, address, blockExplorer }) {
                 </li>
               );
             })}
+            <br/>
             <h3>Listing information</h3>
             {Object.keys(info).map((k) => {
               return (
@@ -177,13 +203,13 @@ function SellStream({ isLoggedIn, signer, provider, address, blockExplorer }) {
 
   return (
     <div className="content">
-      <h1 className="sell-heading">Publish a new bundle contract</h1>
+      <h1 className="sell-heading">Publish a new Theta bundle contract</h1>
       <Header>
         <Steps current={currentStep}>
           <Step title="Login" description="Authenticate." />
           <Step title="Information" description="What are you listing?" />
-          <Step title="Upload" description="Add video(s) for purchase." />
-          <Step title="Done" description="View your contract." />
+          <Step title="Upload" description="Upload video(s) for purchase." />
+          <Step title="Done" description="Share your contract." />
         </Steps>
       </Header>
       <Content>
@@ -202,7 +228,7 @@ function SellStream({ isLoggedIn, signer, provider, address, blockExplorer }) {
         &nbsp;
         {currentStep < LAST_STEP && (
           <Button
-            disabled={loading}
+            disabled={loading || !account}
             loading={loading}
             type="primary"
             onClick={() => updateStep(1)}
