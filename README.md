@@ -1,5 +1,5 @@
 <p align='center'>
-    <img src="./img/logo_3_2.png" width=600 />
+    <img src="./img/logo.png" width=400 />
 </p>
 
 ## ThetaBundle
