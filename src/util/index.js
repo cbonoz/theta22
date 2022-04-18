@@ -16,6 +16,10 @@ export function getAverage(array) {
   return array.reduce((a, b) => a + b) / array.length;
 }
 
+export const getListingUrl = (address) => {
+  return `${window.location.origin}/${address}`
+}
+
 export const capitalize = (s) => {
   if (typeof s !== "string") return "";
   return (s.charAt(0).toUpperCase() + s.slice(1)).replace("-", " ");

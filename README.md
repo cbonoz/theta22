@@ -6,6 +6,8 @@
 
 ThetaBundle allows content creators to sell bundles/rights to their video or gaming content via transactable smart contracts.
 
+Built for the Theta Q1 2022 Hackathon.
+
 ## Inspiration
 
 Existing streamers often have large followings and post their content to youtube or other sites after streaming on live networks like Twitch - but that could be the end of it. Given these followings, we want to provide an opportunity to further connect with fans by providing memorabilia, and providing an additional revenue opportunity for the content creator. ThetaBundle allows any streamer to turn collections of their streamed content into a purchase-able contract and IPFS video group.
@@ -96,6 +98,8 @@ Demo:
 
 
 -->
+
+Example contract: http://localhost:3000/0x36FBf31c9E4dcE0Af4b917D10a884cDC71Fb5854
 
 ### Network config
 

@@ -1,23 +1,31 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import React, { useEffect, useState } from "react";
 import { Button, Input } from "antd";
 import { APP_NAME } from "../util/constants";
 import { accountUrl, transactionUrl } from "../util";
-import { getContractBundleUrl } from "../contract/thetaContract";
+import { getContractBundleUrl, purchaseContract } from "../contract/thetaContract";
+import { useParams } from "react-router-dom";
+import { getMetadata } from "../util/stor";
+
 
 // Discover previously minted NFTs.
 // Find information on the owner, play the video,
 function Discover(props) {
+  const {address} = useParams()
   const [url, setUrl] = useState();
   const [loading, setLoading] = useState(false);
   const [result, setResult] = useState();
   const [error, setError] = useState()
 
-  const findListing = async () => {
+  useEffect(() => {
+    if (address) {
+      findListing(address)
+    }
+  }, [address])
+
+  const findListing = async (contractAddress) => {
     setResult(undefined)
     setError(undefined)
-    const address= url
-    if (!address) {
+    if (!contractAddress) {
       setError("Enter a contract address.");
       return
     }
@@ -26,23 +34,49 @@ function Discover(props) {
 
     let bundleUrl
     try {
-      bundleUrl = await getContractBundleUrl(address)
-      const res = {
-        contract: accountUrl(address),
-        bundleUrl
+      bundleUrl = await getContractBundleUrl(contractAddress)
+      
+
+      try {
+        const {data} = await getMetadata(bundleUrl)
+        const res = {
+          contract: accountUrl(contractAddress),
+          bundleUrl,
+          ...data
+        }
+        console.log('result', res)
+        setResult(res);
+      } catch (e) {
+        console.error('error getting metadata', e)
       }
-      setResult(res);
     } catch(e) {
       console.error('error getting contract', e)
       setError('Not a valid ThetaBundle contract address.')
       return
     } finally {
       setLoading(false)
+      if (url != contractAddress) {
+        setUrl(contractAddress)
+      }
     }
   };
 
+  const payContract = async () => {
+    setLoading(true)
+    try {
+      const res = await purchaseContract(url, result.eth)
+      alert('Successfully purchased ' + result.title)
+    } catch (e) {
+      console.error('e', e)
+      setError('Error completing payment: ' + e.message)
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return (
     <div>
+      {!address && <div>
       <h1>Discover bundles</h1>
       <br />
       <h3>Enter the address of a {APP_NAME} contract</h3>
@@ -57,18 +91,20 @@ function Discover(props) {
         className="standard-btn"
         loading={loading}
         disabled={loading}
-        onClick={findListing}
+        onClick={() => findListing(url)}
       >
         Search
       </Button>
+</div>}
 
-      {error && <p className="red">{error}</p>}
 
       {result && (
         <div>
+          <b className="green">Complete Purchase:</b>
           <hr />
           <p>
-          <a href={result.address} target="_blank">
+            <h1>{result.title}</h1>
+          <a href={result.contract} target="_blank">
             View Contract
           </a>
           </p>
@@ -77,8 +113,17 @@ function Discover(props) {
               View Theta Bundle
             </a>
           </p>
+          <p>Payable address: {result.payableAddress}</p>
+          <p>Cost (ETH): <b>{result.eth}</b></p>
+          <Button 
+          type="primary"
+          size="large"
+           onClick={payContract} disabled={loading}>Purchase</Button>
         </div>
       )}
+      <br/>
+
+      {error && <p className="red">{error}</p>}
     </div>
   );
 }

@@ -39,9 +39,9 @@ function App() {
         <Content>
           <div className="container">
             <Routes>
-              <Route path="/" element={<Discover />} />
-              <Route path="/sell" element={<UploadPage />} />
-              <Route path="/about" element={<About />} />
+              <Route exact path="/sell" element={<UploadPage />} />
+              <Route exact path="/about" element={<About />} />
+              <Route path="/:address" element={<Discover />} />
             </Routes>
           </div>
         </Content>

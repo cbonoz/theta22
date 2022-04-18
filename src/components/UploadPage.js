@@ -5,7 +5,7 @@ import { Input, Button, Steps, Layout } from "antd";
 import { storeFiles } from "../util/stor";
 import { CONNECT_TEXT, UPLOAD_INFO } from "../util/constants";
 import { deployContract } from "../contract/thetaContract";
-import { ipfsUrl, transactionUrl } from "../util";
+import { getListingUrl, ipfsUrl, transactionUrl } from "../util";
 import {ethers} from 'ethers'
 import { useEthers } from "@usedapp/core";
 
@@ -27,7 +27,7 @@ function SellStream({ isLoggedIn, signer, provider, blockExplorer }) {
   const [files, setFiles] = useState([]);
   const [info, setInfo] = useState({
     userName: "cbono",
-    title: "LiveStream videos from 4/9",
+    title: "LiveStream videos from 4/9/22",
     payableAddress: null,
     eth: 0.01,
   });
@@ -72,6 +72,7 @@ function SellStream({ isLoggedIn, signer, provider, blockExplorer }) {
 
         const card = {
           ...info,
+          purchaseUrl: getListingUrl(contract.address),
           contract: contract.address,
           transactionHash: contract.deployTransaction.hash,
           createdAt: new Date(),
@@ -83,7 +84,7 @@ function SellStream({ isLoggedIn, signer, provider, blockExplorer }) {
         // addCard(card);
       } catch (e) {
         console.error("error creating listing", e);
-        alert(e.toString());
+        alert('Error creating listing: ' + e.message)
         return;
       } finally {
         setLoading(false);
@@ -174,7 +175,7 @@ function SellStream({ isLoggedIn, signer, provider, blockExplorer }) {
               View transaction<br/>
               <a target="_blank" href={transactionUrl(result.transactionHash)}>{result.transactionHash}</a></p>}
 
-              <p>Share the contract address below!</p>
+              <p>Share the contract purchase address below!</p>
             {Object.keys(result).map((k) => {
               return (
                 <li>

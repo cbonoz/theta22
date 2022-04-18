@@ -63,3 +63,19 @@ export const getContractBundleUrl = async (contractAddress) => {
   const result = await contract.getBundleUrl();
   return result;
 };
+
+
+export const purchaseContract = async (contractAddress, eth) => {
+  if (!contractAddress) {
+    return null
+  }
+  const signer = await getSigner();
+  const contract = new ethers.Contract(
+    contractAddress,
+    THETA_CONTRACT.abi,
+    signer
+  );
+  const options = {value: ethers.utils.parseEther(eth + "")}
+  const result = await contract.purchase(options);
+  return result;
+};
