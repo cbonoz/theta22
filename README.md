@@ -4,9 +4,13 @@
 
 ## ThetaBundle
 
-ThetaBundle allows content creators to sell bundles/rights to their video or gaming content via transactable smart contracts.
+ThetaBundle allows content creators to sell bundles/rights to their video or gaming content via transactable Theta smart contracts.
 
 Built for the Theta Q1 2022 Hackathon.
+
+* Chris Buonocore linkedin.com/in/chrisbuonocore United States
+* chrisdistrict@gmail.com
+* Categories: Video / Gaming / Smart contracts
 
 ## Inspiration
 
@@ -84,11 +88,17 @@ Update `ACTIVE_NETWORK` in `constants.js` to reflect the target network for the 
 <h3>Adding video files</h3>
 <img src="./img/upload2.png" width=800>
 
+<h3>ThetaBundle created!</h3>
+<img src="./img/upload3.png" width=800>
+
 <h3>Deploying a bundle contract</h3>
 <img src="./img/deploy.png" width=800>
 
 <h3>Deployed contract on Theta testnet</h3>
 <img src="./img/contract.png" width=800>
+
+<h3>Completing payment</h3>
+<img src="./img/pay.png" width=800>
 
 <h3>About</h3>
 <img src="./img/about.png" width=800>
