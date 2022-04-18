@@ -17,6 +17,7 @@ function Discover(props) {
   const [error, setError] = useState()
 
   useEffect(() => {
+    console.log('address', address)
     if (address) {
       findListing(address)
     }
