@@ -12,6 +12,8 @@ Built for the Theta Q1 2022 Hackathon.
 * chrisdistrict@gmail.com
 * Categories: Video / Gaming / Smart contracts
 
+Live demo: https://thetabundle.netlify.app/
+
 ## Inspiration
 
 Existing streamers often have large followings and post their content to youtube or other sites after streaming on live networks like Twitch - but that could be the end of it. Given these followings, we want to provide an opportunity to further connect with fans by providing memorabilia, and providing an additional revenue opportunity for the content creator. ThetaBundle allows any streamer to turn collections of their streamed content into a purchase-able contract and IPFS video group.
