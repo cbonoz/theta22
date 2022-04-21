@@ -90,19 +90,22 @@ Update `ACTIVE_NETWORK` in `constants.js` to reflect the target network for the 
 <h3>Adding video files</h3>
 <img src="./img/upload2.png" width=800>
 
+<h3>Deploying contract on Theta testnet</h3>
+<img src="./img/confirm.png" width=800>
+
+<h3>Breakpoint at contract creation</h3>
+<img src="./img/deploy.png" width=800>
+
 <h3>ThetaBundle created!</h3>
 <img src="./img/upload3.png" width=800>
-
-<h3>Deploying a bundle contract</h3>
-<img src="./img/deploy.png" width=800>
 
 <h3>Deployed contract on Theta testnet</h3>
 <img src="./img/contract.png" width=800>
 
-<h3>Completing payment</h3>
+<h3>Completing purchase via shareable payment url</h3>
 <img src="./img/pay.png" width=800>
 
-<h3>About</h3>
+<h3>About page</h3>
 <img src="./img/about.png" width=800>
 
 <!--
